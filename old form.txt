@@ -1,0 +1,37 @@
+  --------
+                            <div class="contact-form-loader"></div>
+                            <fieldset>
+                                <label class="name">
+                                    Your Name:
+                                    <input type="text" name="name" placeholder="" value=""
+                                           data-constraints="@Required @JustLetters"/>
+                                    <span class="empty-message">*This field is required.</span>
+                                    <span class="error-message">*This is not a valid name.</span>
+                                </label>
+
+                                <label class="email">
+                                    Your E-mail:
+                                    <input type="text" name="email" placeholder="" value=""
+                                           data-constraints="@Required @Email"/>
+                                    <span class="empty-message">*This field is required.</span>
+                                    <span class="error-message">*This is not a valid email.</span>
+                                </label>
+
+                                <label class="Password">
+                                    Password:
+                                    <input type="password" name="password" placeholder="" value=""
+                                           data-constraints="@Required"/>
+                                    <span class="empty-message">*This field is required.</span>
+                                    <span class="error-message">*This is not a valid password.</span>
+                                </label>
+
+
+
+                                <div class="btn-wr">
+                                    <a class="" href="#" data-type="reset">Clear</a>
+                                    <a class="" href="#" data-type="submit">Send</a>
+                                </div>
+                            </fieldset>
+
+                        </form>
+                    </div>
