@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require_once('config.php')
+session_start();
+require_once('config.php')
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +65,7 @@
                     <p style="text-align: right; padding-right: 10px; color: white">
                         <?php
 
-                        if ($_SESSION['firstName'] != ""){
+                        if ($_SESSION['firstName'] != "") {
                             echo "Hi, " . $_SESSION['firstName'];
                         }
 
@@ -103,26 +103,27 @@
                         <a href="search.php">Search</a>
                     </li>
 
- <?php
+                    <?php
 
-                            if ($_SESSION["id"] == '7' /*admin id*/) {?>
-                    <li>
-                        <a style="display: inline-flex;"
-                           <?php
+                    if ($_SESSION["id"] == '7' /*admin id*/) { ?>
+                        <li>
+                            <a style="display: inline-flex;"
+                                <?php
                                 echo "href=\"admin/userstable.php\"";
-                            
-                            ?>
-All Users<p style="colr: grey; font-size: 14px; margin-left: 20px;"><em> (admin only)</em>
+
+                                ?>
+                               All Users
+                            <p style="colr: grey; font-size: 14px; margin-left: 20px;"><em> (admin only)</em>
                             </p>
                             <!--only id 7-->
-                        </a>
-                    </li>
-                    <?php } ?>                        
-                            
+                            </a>
+                        </li>
+                    <?php } ?>
+
 
                     <?php
 
-                    if ($_SESSION['loggedin'] === 'true') {
+                    if ($_SESSION['loggedin'] == 'true') {
                         echo "<li>
                                 <a href=\"logout.php\">Log out</a>
                               </li>";
@@ -357,7 +358,8 @@ All Users<p style="colr: grey; font-size: 14px; margin-left: 20px;"><em> (admin 
                 <li><a href="#" class="fa fa-tumblr"></a></li>
                 <li><a href="#" class="fa fa-google-plus"></a></li>
             </ul>
-             <div class="copyright">© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny Malinsky
+            <div class="copyright">© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny
+                Malinsky
             </div>
         </div>
 
