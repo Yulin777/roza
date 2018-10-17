@@ -2,7 +2,7 @@
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
-
+$datasitekey = "6Lfbb2sUAAAAAHeJbmrg3b6SwY4Est4JIxwm-GmO";
 
 // Include config file
 session_start();
@@ -10,8 +10,8 @@ require_once "config.php";
 $sql = "SELECT user_id FROM reviews WHERE user_id = ?";
 
 if ($stmt = mysqli_prepare($link, $sql)) {
-	
-	$id=strval($_SESSION['id']);
+
+    $id = strval($_SESSION['id']);
     mysqli_stmt_bind_param($stmt, "s", $id);
 
     // Attempt to execute the prepared statement
@@ -30,9 +30,9 @@ if ($stmt = mysqli_prepare($link, $sql)) {
 //------------------------------------------------------------
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $message = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_FLAG_NO_ENCODE_QUOTES);//Equivalent to calling htmlspecialchars() with ENT_QUOTES set.
-	//vardump($message);    
-	$rating = 6 - (filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT));//Remove all characters except digits, plus and minus sign. 
+    $message = filter_input(INPUT_POST, "message", FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);//Equivalent to calling htmlspecialchars() with ENT_QUOTES set.
+    //vardump($message);
+    $rating = 6 - (filter_input(INPUT_POST, 'rating', FILTER_SANITIZE_NUMBER_INT));//Remove all characters except digits, plus and minus sign.
     $secretKey = '6Lfbb2sUAAAAAGMCiCUV9SBm3xcemfJQ0VD-IlMO';
     $responseKey = $_POST['g-recaptcha-response'];
     $userIP = $_SERVER['REMOTE_ADDR'];
@@ -43,16 +43,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //     Prepare an insert statement
     $sql = "INSERT INTO reviews (rating,content,user_id) VALUES (?, ?, ?)";
     if ($stmt = mysqli_prepare($link, $sql)) {
-     //   if (isset($session_arr) && isset($_SESSION["id"])) {
+        //   if (isset($session_arr) && isset($_SESSION["id"])) {
 //            echo "<script>alert('session set');</script>";
-       // }
+        // }
         //if (!isset($_COOKIE['rozacafe'])) {
 //            echo "<script>alert('kikiki');</script>";
-          //  $session_arr = break_cookie($_COOKIE['rozacafe']);
+        //  $session_arr = break_cookie($_COOKIE['rozacafe']);
         //}
         //if (isset($_COOKIE['rozacafe'])) {
 //            echo "<script>alert('lalala');</script>";
-          //  $session_arr = break_cookie($_COOKIE['rozacafe']);
+        //  $session_arr = break_cookie($_COOKIE['rozacafe']);
         //}
         mysqli_stmt_bind_param($stmt, "isi", $rating, $message, $_SESSION["id"]);
 
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 printf("Error: %s.\n", mysqli_stmt_error($stmt));
             }
         } else {
-            echo "<script>alert('not verified');</script>";
+            echo "<script>alert('captcha not verified');</script>";
             header("location: submitted.php?msg=<h1 style='width: 720px;'>please verify reCaptcha before submitting your review</h1></br>Going back to Reviews&target=reviews.php");
         }
 
@@ -135,7 +135,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h2>Review Form</h2>
 
                         <form id="contact-form" class='contact-form'
-                              action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"><?php //evrey output should gothrough htmlspecialchars ?>
+                              action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                              method="post"><?php //evrey output should gothrough htmlspecialchars ?>
                             <div class="contact-form-loader"></div>
                             <fieldset <?php if ($voted == 1) echo "disabled"; ?> ><?php //hardcoded string,nothing to filter ?>
 
@@ -181,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <span class="error-message">*The message is too short.</span>
                                 </label>
                                 <br>
-                                <div class="g-recaptcha" data-sitekey="6Lfbb2sUAAAAAHeJbmrg3b6SwY4Est4JIxwm-GmO"></div>
+                                <div class="g-recaptcha" data-sitekey="<?= $datasitekey ?>"></div>
                                 <br>
                                 <div class="btn-wr">
                                     <input id="submitreview" type="submit" class="submitBtn" value="submit"
@@ -214,26 +215,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <tbody>
                                 <?php
-                                
+
                                 $sql = "SELECT * FROM reviews";
 
                                 if ($result = mysqli_query($link, $sql)) {
                                     // Fetch one and one row
                                     while ($row = mysqli_fetch_row($result)) {
-                                
+
                                         $sql_userName = "SELECT firstName,lastName FROM users WHERE id=" . $row[2];
 
                                         if ($result2 = mysqli_query($link, $sql_userName)) {
                                             $row2 = mysqli_fetch_row($result2);
                                             printf("<h3 style='margin-bottom: 10px; margin-top: 50px; '>%s %s</h3>"
-                                                , htmlspecialchars($row2[0],ENT_QUOTES), htmlspecialchars($row2[1],ENT_QUOTES)); /*name*/
+                                                , htmlspecialchars($row2[0], ENT_QUOTES), htmlspecialchars($row2[1], ENT_QUOTES)); /*name*/
                                         }
                                         for ($i = 0; $i < $row[0]; $i++) {
                                             printf("<span class=\"fa fa-star checked\" ></span> "); /*stars*/
                                         }
                                         printf("<p class='user-review' style='margin-top: 10px'>%s</p>
                                                 <br>
-                                              <hr size='1' style='height: 1px; opacity: 0.5;'>", htmlspecialchars($row[1],ENT_QUOTES)/*review*/);
+                                              <hr size='1' style='height: 1px; opacity: 0.5;'>", htmlspecialchars($row[1], ENT_QUOTES)/*review*/);
                                     }
                                 }
                                 ?>
@@ -258,8 +259,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="#" class="fa fa-tumblr"></a></li>
                 <li><a href="#" class="fa fa-google-plus"></a></li>
             </ul>
-            <div class="copyright">© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny Malinsky
-               
+            <div class="copyright">© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny
+                Malinsky
+
             </div>
         </div>
 
