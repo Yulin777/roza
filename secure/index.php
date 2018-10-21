@@ -79,7 +79,7 @@ require_once('config.php')
 
                     if ($_SESSION['loggedin'] != 'true') {
                         echo "<li>
-                                <a href='/login.php'>Log In</a>
+                                <a href='../secure/login.php'>Log In</a>
                               </li>";
                     }
                     ?>
@@ -340,7 +340,7 @@ require_once('config.php')
                 <address class="address-1">
                     <dl>
                         <dt>Address:</dt>
-                        <dd>4578 Marmora Road, Glasgow DA04 89GR</dd>
+                        <dd>Road 9977, Qiryat Shemona, 1220800</dd>
                     </dl>
                     <p><em>800 2345-6789</em></p>
                 </address>

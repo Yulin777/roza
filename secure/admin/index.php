@@ -1,43 +1,31 @@
 <?php
-
+$admin_pass = 'admin';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if password is empty
-
     if (empty(trim($_POST["password"]))) {
-
         $password_err = "Please enter your password.";
-
     } else {
         $password = trim($_POST["password"]);
-        if ($password == 'admin') {
-         
-          if ($_SESSION['loggedin'] == 'true' && $_SESSION["id"] = "7" )
-          {
-             header('Location: '."userstable.php");
-          }
-      else
-      {
+        if ($_SESSION['loggedin'] == 'true' && $password == $admin_pass && $_SESSION["id"] = "7") {
+            header('Location: ' . "userstable.php");
+        } else {
             session_destroy();
             $_SESSION = array();
             // Destroy previous session.
-            session_destroy();  
+            session_destroy();
             session_start();
-          // Store data in session variables
-          $_SESSION["loggedin"] = true;
-          $_SESSION["id"] = "7";
-          $_SESSION["email"] = "admin";
-          $_SESSION["firstName"]="admin";
+            // Store data in session variables
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"] = "7";
+            $_SESSION["email"] = "admin";
+            $_SESSION["firstName"] = "admin";
 
-            header('Location: '."userstable.php");
-        }
+            header('Location: ' . "userstable.php");
         }
     }
-
-
 }
-
 ?>
 
 

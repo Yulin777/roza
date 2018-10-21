@@ -189,8 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                               HEADER
     =========================================================-->
     <header>
-        <?php include "menu.inc"; ?>
-
+        <?php include "../secure/menu.inc"; ?>
     </header>
     <!--========================================================
                               CONTENT

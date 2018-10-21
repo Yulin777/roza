@@ -61,7 +61,7 @@ require_once "config.php";
             }
                 } else {
                     echo "<li>
-                                <a href=\"login.php\">Log In</a>
+                                <a href=\"../secure/login.php\">Log In</a>
                           </li>";
                 }
                 ?>
