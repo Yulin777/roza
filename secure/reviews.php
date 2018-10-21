@@ -43,17 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //     Prepare an insert statement
     $sql = "INSERT INTO reviews (rating,content,user_id) VALUES (?, ?, ?)";
     if ($stmt = mysqli_prepare($link, $sql)) {
-        //   if (isset($session_arr) && isset($_SESSION["id"])) {
-//            echo "<script>alert('session set');</script>";
-        // }
-        //if (!isset($_COOKIE['rozacafe'])) {
-//            echo "<script>alert('kikiki');</script>";
-        //  $session_arr = break_cookie($_COOKIE['rozacafe']);
-        //}
-        //if (isset($_COOKIE['rozacafe'])) {
-//            echo "<script>alert('lalala');</script>";
-        //  $session_arr = break_cookie($_COOKIE['rozacafe']);
-        //}
         mysqli_stmt_bind_param($stmt, "isi", $rating, $message, $_SESSION["id"]);
 
         if ($response->success) {

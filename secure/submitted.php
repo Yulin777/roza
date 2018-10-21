@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,22 +45,21 @@
                 <div class="row box-3">
                     <div class="grid_5" style="font-size:22px">
                         <?php
-                       // echo $_GET['msg'];
-						echo filter_input(INPUT_GET, "msg", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                        // echo $_GET['msg'];
+                        echo filter_input(INPUT_GET, "msg", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-                        if($_GET['target'])
-                        {
-                          echo " you will be redirected in 5 seconds<br/>";
-						$target=filter_input(INPUT_GET, "target", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                          $url = 'http://' . $_SERVER['HTTP_HOST'];            // Get the server
-						  $url .= rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); // Get the current directory
-                          $url .= '/'.$target;            						// relative path
-                          header('Refresh: 5; URL='.$url);
-                          exit();//important:http://thedailywtf.com/articles/WellIntentioned-Destruction
+                        if ($_GET['target']) {
+                            echo " you will be redirected in 5 seconds<br/>";
+                            $target = filter_input(INPUT_GET, "target", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                            $url = 'http://' . $_SERVER['HTTP_HOST'];            // Get the server
+                            $url .= rtrim(dirname($_SERVER['PHP_SELF']), '/\\'); // Get the current directory
+                            $url .= '/' . $target;                                    // relative path
+                            header('Refresh: 5; URL=' . $url);
+                            exit();//important:http://thedailywtf.com/articles/WellIntentioned-Destruction
                         }
 
                         ?>
-                      
+
                     </div>
                 </div>
             </div>
@@ -79,8 +77,9 @@
                 <li><a href="#" class="fa fa-tumblr"></a></li>
                 <li><a href="#" class="fa fa-google-plus"></a></li>
             </ul>
-          <div class="copyright">© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny Malinsky
-        </div>
+            <div class="copyright">© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny
+                Malinsky
+            </div>
 
     </footer>
 </div>

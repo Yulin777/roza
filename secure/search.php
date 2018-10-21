@@ -59,70 +59,59 @@
                             <th scope="col">Email</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                          
+
                         </tr>
                         </thead>
 
 
-
                         <tbody>
-                          <?php
-                          $search_param="";
-                      // error_reporting(E_ALL);
-                       //   ini_set('display_errors', 1);//we dont want to report error on production eniv.
-                          
-                          if($_SERVER["REQUEST_METHOD"] == "GET")
-                          {
-							require_once "config.php";
-                          
-							$sql = "SELECT firstName,lastName,email FROM users WHERE firstName = ?";
-                          if($stmt = mysqli_prepare($link, $sql))
-                          {
-                              // Bind variables to the prepared statement as parameters
-                              mysqli_stmt_bind_param($stmt, "s", $param_name);
-                              // Set parameters
-                              $param_name = filter_input(INPUT_GET, "user_name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);//never trust user input-get/post
-                              // Attempt to execute the prepared statement
-                              if(mysqli_stmt_execute($stmt))
-                              {
-                                  // Store result
-                                  mysqli_stmt_store_result($stmt);
-                                  // Check if email exists, if yes then verify password
-                                  if(mysqli_stmt_num_rows($stmt) >= 1)
-                                  {
-                                      // Bind result variables
-                                      mysqli_stmt_bind_result($stmt, $firstName, $lastName, $email);
+                        <?php
+                        $search_param = "";
+                        // error_reporting(E_ALL);
+                        //   ini_set('display_errors', 1);//we dont want to report error on production eniv.
 
-                                        $i=0;
-                                      while ($row= mysqli_stmt_fetch($stmt))
-                                      {
-                                         echo "<tr><th scope='row'>".++$i."</th>";
-                                         printf("<td>%s</td>", htmlspecialchars($email));
-                                         printf("<td>%s</td>", htmlspecialchars($firstName));
-                                         printf("<td>%s</td>", htmlspecialchars($lastName));
+                        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                            require_once "config.php";
 
-                                         echo "</tr>";
-                                      }
+                            $sql = "SELECT firstName,lastName,email FROM users WHERE firstName = ?";
+                            if ($stmt = mysqli_prepare($link, $sql)) {
+                                // Bind variables to the prepared statement as parameters
+                                mysqli_stmt_bind_param($stmt, "s", $param_name);
+                                // Set parameters
+                                $param_name = filter_input(INPUT_GET, "user_name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);//never trust user input-get/post
+                                // Attempt to execute the prepared statement
+                                if (mysqli_stmt_execute($stmt)) {
+                                    // Store result
+                                    mysqli_stmt_store_result($stmt);
+                                    // Check if email exists, if yes then verify password
+                                    if (mysqli_stmt_num_rows($stmt) >= 1) {
+                                        // Bind result variables
+                                        mysqli_stmt_bind_result($stmt, $firstName, $lastName, $email);
+
+                                        $i = 0;
+                                        while ($row = mysqli_stmt_fetch($stmt)) {
+                                            echo "<tr><th scope='row'>" . ++$i . "</th>";
+                                            printf("<td>%s</td>", htmlspecialchars($email));
+                                            printf("<td>%s</td>", htmlspecialchars($firstName));
+                                            printf("<td>%s</td>", htmlspecialchars($lastName));
+
+                                            echo "</tr>";
+                                        }
 
 
-
-                              }
+                                    }
+                                }
                             }
-                          }
-                          
-    
-                       
-							
-					} else {
-						echo "0 results";
-						}
 
-					mysqli_close($link);
-           
-                        
 
-                          ?>
+                        } else {
+                            echo "0 results";
+                        }
 
+                        mysqli_close($link);
+
+
+                        ?>
 
 
                         </tbody>
@@ -144,10 +133,10 @@
                 <li><a href="#" class="fa fa-tumblr"></a></li>
                 <li><a href="#" class="fa fa-google-plus"></a></li>
             </ul>
-             <div class="copyright">
-				© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny Malinsky
-			 </div>
-			 </div>
+            <div class="copyright">
+                © <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny Malinsky
+            </div>
+        </div>
 
     </footer>
 </div>

@@ -36,29 +36,30 @@ require_once "config.php";
                     <a href="search.php">Search</a>
                 </li>
 
-				<?php
+                <?php
 
-						//get id from session var
-                        if ($_SESSION["id"] == 7 /*admin id*/) {
-              ?>  
-                <li>
-                <a href="admin/userstable.php">                    
-                        All Users<p style="colr: grey; font-size: 14px; text-align: center;"><em> (admin only)</em></p>
+                //get id from session var
+                if ($_SESSION["id"] == 7 /*admin id*/) {
+                    ?>
+                    <li>
+                        <a href="admin/userstable.php">
+                            All Users<p style="colr: grey; font-size: 14px; text-align: center;"><em> (admin only)</em>
+                            </p>
                         </a>
-               </li>
-			<?php
-			} 
-			?>
+                    </li>
+                    <?php
+                }
+                ?>
 
                 <?php
 
-                if ($_SESSION["loggedin"]==true) {
-                  if ($_SESSION['firstName'] != "") {
+                if ($_SESSION["loggedin"] == true) {
+                    if ($_SESSION['firstName'] != "") {
                         echo "<li style='display: inline-flex;'>
                               <a href=\"logout.php\">Log out</a>
                             <p style='margin-top: 0px; margin-left: 20px; color: white; font-weight: 600;'>Hi, " . $_SESSION['firstName'] . "</p>
                     </li>";
-            }
+                    }
                 } else {
                     echo "<li>
                                 <a href=\"../secure/login.php\">Log In</a>
