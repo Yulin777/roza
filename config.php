@@ -9,7 +9,7 @@ define('DB_NAME', 'b7_22581034_roza_main_db');
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Check connection
-if($link === false){
+if ($link === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
@@ -23,18 +23,17 @@ function break_cookie($cookie_string)
     }
     return $array;
 }
-$session_arr=array();
+
+$session_arr = array();
 // get array from cookie by using the
 if (isset($_COOKIE['rozacafe'])) {
     $session_arr = break_cookie($_COOKIE['rozacafe']);
-}
-else {
-  $session_arr = array(
-      'loggedin' => 'false',
-      'id' => '0',
-      'email' => '',
-      'firstName' => ''
-  );
-
+} else {
+    $session_arr = array(
+        'loggedin' => 'false',
+        'id' => '0',
+        'email' => '',
+        'firstName' => ''
+    );
 }
 ?>

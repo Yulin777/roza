@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
             // Bind variables to the prepared statement as parameters
            mysqli_stmt_bind_param($stmt, "s", $id);
-           $id=7;
+           $id=47;
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Store result

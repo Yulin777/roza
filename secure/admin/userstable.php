@@ -1,57 +1,55 @@
 <?php
-     session_start();
+session_start();
 ?>
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
+    <meta name="robots" content="noindex" />
 
-<link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
 
 </head>
 <body>
 <div class="table-responsive">
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Email</th>
-        <th scope="col">First Name </th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Password</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-     
-      require_once "../config.php";
-      
-      if ($_SESSION['loggedin'] == 'true' && $_SESSION["id"] = "7")
-      {
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
 
-      $i=0;
-      // Prepare an insert statement
-      $sql = "SELECT * FROM users";
-      if ($result = mysqli_query($link, $sql)) {
+        require_once "../config.php";
 
-          while ($row = mysqli_fetch_row($result))
-          {
-             echo "<tr><th scope='row'>".++$i."</th>";
-             printf("<td>%s</td>", htmlspecialchars($row[0],ENT_QUOTES));
-             printf("<td>%s</td>", htmlspecialchars($row[1],ENT_QUOTES));
-             printf("<td>%s</td>", htmlspecialchars($row[2],ENT_QUOTES));
-             printf("<td>%s</td>", htmlspecialchars($row[3],ENT_QUOTES));
-             echo "</tr>";
-          }
+        if ($_SESSION['loggedin'] == 'true' && $_SESSION["id"] = "7") {
 
-          }
-}
-      ?>
+            $i = 0;
+            // Prepare an insert statement
+            $sql = "SELECT * FROM users";
+            if ($result = mysqli_query($link, $sql)) {
 
-    </tbody>
-  </table>
+                while ($row = mysqli_fetch_row($result)) {
+                    echo "<tr><th scope='row'>" . ++$i . "</th>";
+                    printf("<td>%s</td>", htmlspecialchars($row[0], ENT_QUOTES));
+                    printf("<td>%s</td>", htmlspecialchars($row[1], ENT_QUOTES));
+                    printf("<td>%s</td>", htmlspecialchars($row[2], ENT_QUOTES));
+                    printf("<td>%s</td>", htmlspecialchars($row[3], ENT_QUOTES));
+                    echo "</tr>";
+                }
+
+            }
+        }
+        ?>
+
+        </tbody>
+    </table>
 
 </div>
 </body>

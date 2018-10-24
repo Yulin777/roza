@@ -74,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                     if (mysqli_stmt_fetch($stmt)) {
-
                         if (password_verify($password, $hashed_password)) {//note that only secure passwords created with password_hash will be acceppted
                             //field length in db should be 255 varchar
 
