@@ -108,7 +108,7 @@ require_once('config.php')
                     if ($_SESSION["id"] == '7' /*admin id*/) { ?>
                         <li style="height: 65px;">
                             <a <?php echo "href=\"admin/userstable.php\""; ?> <p> All Users
-                            <div>
+                            <div style="font-size: 17px">
                                 (admin only)
                             </div>
                             </p><!--only id 7--></a>
