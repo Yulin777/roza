@@ -1,9 +1,9 @@
 <?php
 
 //we dont want error reporting in production version
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 // Define variables and initialize with empty values
 $email = $password = "";
@@ -11,25 +11,24 @@ $email_err = $password_err = "";
 // Processing form data when form is submitted
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		require_once "../config.php";
-		
-		// Check if password is empty
+    require_once "../config.php";
+
+    // Check if password is empty
     if (empty(trim($_POST["password"])) || !preg_match("/^([a-zA-Z0-9]+)$/", $_POST["password"])) {
         $password_err = "Please enter a password without spiceal chars";
     } else {
         $password = trim($_POST["password"]);//safe because check was made before
     }
-	
-	if (empty($password_err)) //no errors 
-	{
-	 // Prepare a select statement
-     $sql = "SELECT password FROM users WHERE id = ?";
-		if ($stmt = mysqli_prepare($link, $sql)) 
-		{
-			
+
+    if (empty($password_err)) //no errors
+    {
+        // Prepare a select statement
+        $sql = "SELECT password FROM users WHERE id = ?";
+        if ($stmt = mysqli_prepare($link, $sql)) {
+
             // Bind variables to the prepared statement as parameters
-           mysqli_stmt_bind_param($stmt, "s", $id);
-           $id=47;
+            mysqli_stmt_bind_param($stmt, "s", $id);
+            $id = 47;
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Store result
@@ -38,44 +37,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $hashed_password);
-					
+
                     if (mysqli_stmt_fetch($stmt)) {
 
-					 if (password_verify($password, $hashed_password)|| $password==$hashed_password) {
-							//note that only secure passwords created with password_hash will be acceppted
+                        if (password_verify($password, $hashed_password) || $password == $hashed_password) {
+                            //note that only secure passwords created with password_hash will be acceppted.
+                            //second half of if condition is there for allowing unsecure login
                             //field length in db should be 255 varchar
 
                             // Password is correct
-                             header('Location: ' . "userstable.php");
+                            header('Location: ' . "userstable.php");
 
-                          
 
                         } else {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
                         }
-				}
-				  // Close statement
-        mysqli_stmt_close($stmt);
-			}
-		}    
-	}
+                    }
+                    // Close statement
+                    mysqli_stmt_close($stmt);
+                }
+            }
+        }
         // Close connection
 
-    mysqli_close($link);
+        mysqli_close($link);
 
-        
-	}//if pass_err empty
-	
-	
-	
+
+    }//if pass_err empty
+
+
 }//if post
 
 
-
 ?>
-
-
 
 
 <!DOCTYPE html>
