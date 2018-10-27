@@ -29,14 +29,13 @@
       $sql = "SELECT * FROM users";
       if ($result = mysqli_query($link, $sql)) {
 
-          while ($row = mysqli_fetch_row($result))
-          {
-             echo "<tr><th scope='row'>".++$i."</th>";
-             printf("<td>%s</td>", $row[0]);
-             printf("<td>%s</td>", $row[1]);
-             printf("<td>%s</td>", $row[2]);
-             printf("<td>%s</td>", $row[3]);
-             echo "</tr>";
+          while ($row = mysqli_fetch_row($result)) {
+              echo "<tr><th scope='row'>" . htmlspecialchars($row[0], ENT_QUOTES) . "</th>";
+              printf("<td>%s</td>", htmlspecialchars($row[1], ENT_QUOTES));
+              printf("<td>%s</td>", htmlspecialchars($row[2], ENT_QUOTES));
+              printf("<td>%s</td>", htmlspecialchars($row[3], ENT_QUOTES));
+              printf("<td>%s</td>", htmlspecialchars($row[4], ENT_QUOTES));
+              echo "</tr>";
           }
 
           }
