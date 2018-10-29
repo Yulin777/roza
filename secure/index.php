@@ -105,13 +105,13 @@ require_once('config.php')
 
                     <?php
 
-                    if (isset($_SESSION["id"]) && $_SESSION["id"] == '47' /*admin id*/) { ?>
+                    if (isset($_SESSION["id"]) && $_SESSION["admin"] == 'true' /*admin id*/) { ?>
                         <li>
                             <a <?php echo "href=\"admin/userstable.php\""; ?>
                                     style="display:inline-flex">
                                 All Users
                                 <p style="font-size: 17px; margin-left: 6px"> (admin only)</p>
-                                <!--only id 7--></a>
+                            </a>
                         </li>
                     <?php } ?>
 

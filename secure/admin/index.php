@@ -23,12 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($password_err)) //no errors
     {
         // Prepare a select statement
-        $sql = "SELECT password FROM users WHERE id = ?";
+        $sql = "SELECT password FROM users WHERE admin = 'true'";
         if ($stmt = mysqli_prepare($link, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $id);
-            $id = 47;
+//            mysqli_stmt_bind_param($stmt, "s", $id);
+//            $id = 47;
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Store result
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         } else {
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "The password you entered was not valid or you are not an admin.";
                         }
                     }
                     // Close statement

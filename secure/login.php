@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_query($link, "DELETE FROM ip WHERE timestamp < (NOW() - INTERVAL 11 MINUTE)");//older than 11 minutes get deleted
 
         // Prepare a select statement
-        $sql = "SELECT id, email, firstName, password FROM users WHERE email = ?";
+        $sql = "SELECT id,admin, email, firstName, password FROM users WHERE email = ?";
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_email);
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if email exists, if yes then verify password
                 if (mysqli_stmt_num_rows($stmt) == 1) {
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $email, $firstName, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $admin, $email, $firstName, $hashed_password);
 
 
                     if (mysqli_stmt_fetch($stmt)) {
@@ -83,38 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
+                            $_SESSION["admin"] = $admin;
                             $_SESSION["email"] = $email;
                             $_SESSION["firstName"] = $firstName;
-
-                            /*
-                            $cookie_arr = array(
-                                'loggedin' => 'true',
-                                'id' => $id,
-                                'email' => $email,
-                                'firstName' => $firstName
-                            );*/
-
-                            // build the cookie from our array into a string
-                            /*function build_cookie($var_array) {
-                                $out = '';
-                                if (is_array($var_array)) {
-                                    foreach ($var_array as $index => $data) {
-                                        $out .= ($data != "") ? $index . "=" . $data . "|" : "";
-                                    }
-                                }
-                                return rtrim($out, "|");
-                            }
-                                */
-                            // setting the cookie
-                            //$cookie_value = build_cookie($cookie_arr);
-                            //if (!isset($_COOKIE['rozacafe'])) {
-
-                            //  setcookie("rozacafe", $cookie_value, (time() + (60 * 60 * 24 * 20)), "/"); /* final num setes the num of days */
-                            //}
-
-                            // redirecting:
-
-//                                header("location: submitted.php?msg=<h1>Logged in successfully</h1><br/>&target=index.php");
 
                             if ($response->success) {
                                 echo "<script>alert(' verified');</script>";
