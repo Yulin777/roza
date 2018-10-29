@@ -28,7 +28,7 @@ session_start();
 
         require_once "../config.php";
 
-        if ($_SESSION['loggedin'] == 'true' && $_SESSION['reauth'] == 'true' && $_SESSION["id"] = "47") {
+        if ($_SESSION['reauth'] == 'true') {
 
 
             // Prepare an insert statement
@@ -43,8 +43,9 @@ session_start();
                     printf("<td>%s</td>", htmlspecialchars($row[4], ENT_QUOTES));
                     echo "</tr>";
                 }
-
             }
+            session_start();
+            $_SESSION['reauth'] = 'false';
         } else {
             header('Location: ' . "index.php");
         }

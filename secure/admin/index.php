@@ -46,7 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             //field length in db should be 255 varchar
 
                             // Password is correct
-                            $_SESSION['reauth'] == 'true';
+                            session_start();
+                            $_SESSION['reauth'] = 'true';
                             header('Location: ' . "userstable.php");
 
 
