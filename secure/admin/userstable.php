@@ -28,7 +28,7 @@ session_start();
 
         require_once "../config.php";
 
-        if ($_SESSION['loggedin'] == 'true' && $_SESSION["id"] = "7") {
+        if ($_SESSION['loggedin'] == 'true' && $_SESSION['reauth'] == 'true' && $_SESSION["id"] = "47") {
 
 
             // Prepare an insert statement
@@ -45,6 +45,8 @@ session_start();
                 }
 
             }
+        } else {
+            header('Location: ' . "index.php");
         }
         ?>
 

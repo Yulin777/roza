@@ -65,7 +65,7 @@ require_once('config.php')
                     <p style="text-align: right; padding-right: 10px; color: white">
                         <?php
 
-                        if ($_SESSION['firstName'] != "") {
+                        if (isset($_SESSION['firstName']) && $_SESSION['firstName'] != "") {
                             echo "Hi, " . $_SESSION['firstName'];
                         }
 
@@ -77,7 +77,7 @@ require_once('config.php')
 
                     <?php
 
-                    if ($_SESSION['loggedin'] != 'true') {
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] != 'true') {
                         echo "<li>
                                 <a href='../secure/login.php'>Log In</a>
                               </li>";
@@ -94,7 +94,7 @@ require_once('config.php')
                         <a href="index-2.php">Suggestion Box</a>
                     </li>
                     <li>
-                        <a href="index-3.php">Menu</a>
+                        <a href="menu.php">Menu</a>
                     </li>
                     <li>
                         <a href="reviews.php">Reviews</a>
@@ -105,7 +105,7 @@ require_once('config.php')
 
                     <?php
 
-                    if ($_SESSION["id"] == '7' /*admin id*/) { ?>
+                    if (isset($_SESSION["id"]) && $_SESSION["id"] == '47' /*admin id*/) { ?>
                         <li>
                             <a <?php echo "href=\"admin/userstable.php\""; ?>
                                     style="display:inline-flex">
@@ -118,7 +118,7 @@ require_once('config.php')
 
                     <?php
 
-                    if ($_SESSION['loggedin'] == 'true') {
+                    if (isset($_SESSION["loggedin"]) && $_SESSION['loggedin'] == 'true') {
                         echo "<li>
                                 <a href=\"logout.php\">Log out</a>
                               </li>";

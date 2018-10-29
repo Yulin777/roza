@@ -27,7 +27,7 @@ require_once "config.php";
                     <a href="register.php">Register</a>
                 </li>
                 <li>
-                    <a href="index-3.php">Menu</a>
+                    <a href="menu.php">Menu</a>
                 </li>
                 <li>
                     <a id="navReview" href="reviews.php">Reviews</a>

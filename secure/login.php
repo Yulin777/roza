@@ -79,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             // Password is correct, so start a new session
                             session_start();
+                            session_regenerate_id(); //we want a new session id so it wont be fixed
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
