@@ -77,7 +77,7 @@ require_once('config.php')
 
                     <?php
 
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] != 'true') {
+                    if ($_SESSION['loggedin'] != 'true') {
                         echo "<li>
                                 <a href='../secure/login.php'>Log In</a>
                               </li>";
