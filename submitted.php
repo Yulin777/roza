@@ -1,17 +1,3 @@
-<?php
-
-// get array from cookie by using the
-//if (isset($_COOKIE['rozacafe'])) {
-//    $session_arr = break_cookie($_COOKIE['rozacafe']);
-//    print_r(break_cookie($_COOKIE['rozacafe']));
-//}
-//if (isset($_COOKIE['rozacafe'])) {
-//    echo "\ntest_cookie is in the house\n";
-//    $f = $session_arr['firstName'];
-//
-//    //should redirect  to index.php
-//}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,10 +50,10 @@
 
                         if($_GET['target'])
                         {
-                          echo " you will be redirected in 10 seconds<br>";
+                          echo " you will be redirected in 5 seconds<br>";
 
-                          //header('Location: '.$_GET['target']);
-                          header('Refresh: 10; URL='.$_GET['target']);
+                          
+                          header('Refresh: 5; URL='.$_GET['target']);
                         }
 
                         ?>
