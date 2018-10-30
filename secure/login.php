@@ -74,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                     if (mysqli_stmt_fetch($stmt)) {
-                        if (password_verify($password, $hashed_password)) {//note that only secure passwords created with password_hash will be acceppted
+                        //only secure passwords created with password_hash will be acceppted
+                        if (password_verify($password, $hashed_password)) {
                             //field length in db should be 255 varchar
-
                             // Password is correct, so start a new session
                             session_start();
                             session_regenerate_id(); //we want a new session id so it wont be fixed
@@ -88,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["firstName"] = $firstName;
 
                             if ($response->success) {
-                                echo "<script>alert(' verified');</script>";
                                 if (mysqli_stmt_execute($stmt)) {
                                     // Redirect to login page
                                     header("location: submitted.php?msg=Logged in successfully.&target=index.php");

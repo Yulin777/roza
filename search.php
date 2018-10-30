@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,48 +59,36 @@
                             <th scope="col">Email</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                          
+
                         </tr>
                         </thead>
 
 
-
                         <tbody>
-                          <?php
-                          $search_param="";
-//                           error_reporting(E_ALL);
-//                          ini_set('display_errors', 1);
-                          if($_SERVER["REQUEST_METHOD"] == "GET"){
-                          require_once "config.php";
-                          $search_param=$_GET['user_name'];
-                          $sql = "SELECT firstName,lastName,email FROM users WHERE firstName = '". $search_param ."'";
-										
-						$result = mysqli_query($link, $sql);
-//						if (mysqli_num_rows($result) > 0)
-						if($result)
-						{
-						// output data of each row
-						  $i=0;
-                          while($row = mysqli_fetch_assoc($result))
-							{
-                                echo "<tr><th scope='row'>".++$i."</th>";
-                                echo "<td>".$row["email"]."</td>";
-								echo "<td>".$row["firstName"]."</td>";
-								echo "<td>".$row["lastName"]."</td>";
-                                         echo "</tr>";
-                                      }
-						
-							
-					} else {
-						echo "0 results";
-						}
+                        <?php
+                        $search_param = "";
+                        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                            require_once "config.php";
+                            $search_param = $_GET['user_name'];
+                            $sql = "SELECT firstName,lastName,email FROM users WHERE firstName = '" . $search_param . "'";
 
-					mysqli_close($link);
-           
+                            $result = mysqli_query($link, $sql);
+                            if ($result) {
+                                // output data of each row
+                                $i = 0;
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr><th scope='row'>" . ++$i . "</th>";
+                                    echo "<td>" . $row["email"] . "</td>";
+                                    echo "<td>" . $row["firstName"] . "</td>";
+                                    echo "<td>" . $row["lastName"] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "0 results";
+                            }
+                            mysqli_close($link);
                         }
-
-                          ?>
-
+                        ?>
 
 
                         </tbody>
@@ -125,8 +111,8 @@
                 <li><a href="#" class="fa fa-google-plus"></a></li>
             </ul>
             <div class="copyright">
-				© <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny Malinsky
-			 </div>
+                © <span id="copyright-year"><?php echo date("Y"); ?></span> | Ivan Yulin & Evgeny Malinsky
+            </div>
         </div>
 
     </footer>
