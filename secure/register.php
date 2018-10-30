@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Validate password
 
-    if (empty(trim($_POST["password"])) || !preg_match("/^([a-zA-Z0-9]+)$/", $_POST["password"])) {
+    if (empty(trim($_POST["password"])) || !preg_match("/^([a-zA-Z0-9]+)$/^", $_POST["password"])) {
 
         $password_err = "Please enter a password without spiceal chars";
     } elseif (strlen(trim($_POST["password"])) < 6) {
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
     // Validate confirm password
-    if (empty(trim($_POST["confirm_password"])) || !preg_match("/^([a-zA-Z0-9]+)$/", $_POST["confirm_password"])) {
+    if (empty(trim($_POST["confirm_password"])) || !preg_match("/^([a-zA-Z0-9]+)$/^", $_POST["confirm_password"])) {
         $confirm_password_err = "Please confirm password, password cannot contain special chars";
     } else {
         $confirm_password = trim($_POST["confirm_password"]);
