@@ -1,9 +1,9 @@
 <?php
 
-define('DB_SERVER', 'sql305.byethost7.com');
-define('DB_USERNAME', 'b7_22581034');
-define('DB_PASSWORD', 'rozaiitc909');
-define('DB_NAME', 'b7_22581034_roza_main_db');
+define('DB_SERVER', '<your server>');
+define('DB_USERNAME', '<your username>');
+define('DB_PASSWORD', '<your password>');
+define('DB_NAME', '<your name>');
 
 /*connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
